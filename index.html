@@ -3,873 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gr4ndSmurf - Game Developer</title>
+    <title>gr4ndsmurf - Game Developer</title>
     <link rel="icon" type="image/png" href="img/gr4ndsmurf_logo_v1.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Variables */
-        :root {
-            --gradient-primary: linear-gradient(135deg, #6e48aa, #9d50bb, #6e48aa);
-            --gradient-secondary: linear-gradient(135deg, #434343, #000000);
-            --gradient-accent: linear-gradient(45deg, #00c6ff, #0072ff);
-            --color-text: #ffffff;
-            --color-text-secondary: #e0e0e0;
-            --color-background: #121212;
-            --color-card: rgba(255, 255, 255, 0.05);
-            --transition-speed: 0.3s;
-            --border-radius: 12px;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--color-background);
-            color: var(--color-text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1e1e1e;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #6e48aa;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #9d50bb;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1.5rem 2rem;
-            backdrop-filter: blur(10px);
-            background: rgba(18, 18, 18, 0.8);
-            transition: all var(--transition-speed);
-        }
-
-        header.scrolled {
-            padding: 1rem 2rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            transition: all var(--transition-speed);
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--gradient-primary);
-            transition: width var(--transition-speed);
-        }
-
-        .logo:hover::after {
-            width: 100%;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-        }
-
-        .nav-link {
-            position: relative;
-            font-weight: 600;
-            letter-spacing: 0.8px;
-            transition: all var(--transition-speed);
-            padding: 0.7rem 1.5rem;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 1;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity var(--transition-speed);
-            z-index: -1;
-            border-radius: inherit;
-        }
-
-        .nav-link:hover {
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 0 15px rgba(110, 72, 170, 0.7);
-        }
-
-        .nav-link:hover::before {
-            opacity: 1;
-        }
-
-        .nav-link.active {
-            background: var(--gradient-primary);
-            color: white;
-            box-shadow: 0 0 15px rgba(110, 72, 170, 0.7);
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: var(--color-text);
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 2rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top right, rgba(110, 72, 170, 0.2), transparent 50%),
-                        radial-gradient(circle at bottom left, rgba(157, 80, 187, 0.2), transparent 50%);
-            z-index: -1;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .profile-img-container {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            position: relative;
-            box-shadow: var(--shadow);
-            border: 4px solid transparent;
-            background: var(--gradient-primary);
-            background-origin: border-box;
-            background-clip: content-box, border-box;
-            animation: pulse 3s infinite;
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .profile-img-container:hover .profile-img {
-            transform: scale(1.1);
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: slideUp 0.8s ease-out;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: var(--color-text-secondary);
-            animation: slideUp 0.8s ease-out 0.2s backwards;
-        }
-
-        .divider {
-            width: 100px;
-            height: 4px;
-            background: var(--gradient-primary);
-            margin: 2rem auto;
-            border-radius: 2px;
-            position: relative;
-            animation: expandWidth 1s ease-out 0.4s backwards;
-        }
-
-        .divider::before, .divider::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            height: 1px;
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .divider::before {
-            right: 100%;
-            width: 100px;
-        }
-
-        .divider::after {
-            left: 100%;
-            width: 100px;
-        }
-
-        .divider-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--color-background);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .keyboard-icon {
-            font-size: 1.5rem;
-            color: var(--color-text-secondary);
-        }
-
-        .star-icon {
-            font-size: 1.5rem;
-            margin: 0 1rem;
-            color: var(--color-text-secondary);
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            animation: slideUp 0.8s ease-out 0.6s backwards;
-        }
-
-        .links-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--color-text-secondary);
-            animation: slideUp 0.8s ease-out 0.8s backwards;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-            animation: slideUp 0.8s ease-out 1s backwards;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--gradient-secondary);
-            color: var(--color-text);
-            font-size: 1.2rem;
-            transition: all var(--transition-speed);
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity var(--transition-speed);
-            z-index: -1;
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px);
-        }
-
-        .social-link:hover::before {
-            opacity: 1;
-        }
-
-        /* Portfolio Section */
-        .portfolio {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title-container {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 0.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-
-        .title-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 1rem 0;
-        }
-
-        .title-divider::before,
-        .title-divider::after {
-            content: '';
-            height: 1px;
-            width: 100px;
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Portfolio Grid */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .portfolio-item {
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            position: relative;
-            box-shadow: var(--shadow);
-            transition: all var(--transition-speed);
-            cursor: pointer;
-            height: 0;
-            padding-bottom: 60%; /* Aspect ratio */
-            background-color: #1a1a1a;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-        }
-
-        .portfolio-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
-            z-index: 1;
-            opacity: 0;
-            transition: opacity var(--transition-speed);
-        }
-
-        .portfolio-item:hover::before {
-            opacity: 1;
-        }
-
-        .portfolio-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .portfolio-item:hover .portfolio-img {
-            transform: scale(1.1);
-        }
-
-        .portfolio-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all var(--transition-speed);
-        }
-
-        .portfolio-item:hover .portfolio-info {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .portfolio-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio-category {
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
-        }
-
-        /* Project Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal {
-            background-color: #fff;
-            border-radius: var(--border-radius);
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: var(--shadow);
-            position: relative;
-            transform: translateY(50px);
-            opacity: 0;
-            transition: all 0.5s ease;
-            background-color: #1a1a1a;
-            color: var(--color-text);
-        }
-
-        .modal-overlay.active .modal {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .modal-header {
-            padding: 2rem 2rem 1rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .modal-title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--color-text);
-        }
-
-        .modal-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 1rem 0;
-        }
-
-        .modal-divider::before,
-        .modal-divider::after {
-            content: '';
-            height: 1px;
-            width: 100px;
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--color-text);
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition-speed);
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .modal-close:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: rotate(90deg);
-        }
-
-        .modal-img-container {
-            width: 100%;
-            border-radius: 0;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-
-        .modal-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .modal-content {
-            padding: 0 2rem 2rem;
-            text-align: center;
-        }
-
-        .modal-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: 2rem;
-            text-align: center;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .modal-project-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .modal-project-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--color-text);
-            font-size: 1.2rem;
-            transition: all var(--transition-speed);
-            box-shadow: var(--shadow);
-        }
-
-        .modal-project-link:hover {
-            transform: translateY(-5px);
-            background: var(--gradient-primary);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes expandWidth {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100px;
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(157, 80, 187, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(157, 80, 187, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(157, 80, 187, 0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                background: rgba(18, 18, 18, 0.95);
-                backdrop-filter: blur(10px);
-                transition: right 0.5s ease;
-                z-index: 1000;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-link {
-                margin: 1.5rem 0;
-                font-size: 1.2rem;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .modal-title {
-                font-size: 2rem;
-            }
-
-            /* Hamburger Animation */
-            .hamburger.active .line1 {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-
-            .hamburger.active .line2 {
-                opacity: 0;
-            }
-
-            .hamburger.active .line3 {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
-        }
-
-        @media (max-width: 576px) {
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .profile-img-container {
-                width: 150px;
-                height: 150px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .modal-project-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
-        /* Prevent body scroll when modal is open */
-        body.modal-open {
-            overflow: hidden;
-        }
-
-        /* About Section */
-        .about {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .about-column {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .email-section {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 3rem 0 2rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .email-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--color-text);
-            text-align: center;
-        }
-
-        .email-address {
-            font-size: 1.2rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            transition: all var(--transition-speed);
-        }
-
-        .email-button {
-            padding: 0.8rem 2rem;
-            background: var(--gradient-primary);
-            border: none;
-            border-radius: 30px;
-            color: var(--color-text);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-speed);
-            box-shadow: var(--shadow);
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .email-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .about-links-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .about-content {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header -->
@@ -937,13 +74,33 @@
             </div>
         </div>
         
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="portfolio-search" placeholder="Search projects...">
+                <button id="clear-search" class="clear-button">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
         <div class="portfolio-grid">
             <!-- Project 1 -->
             <div class="portfolio-item" data-project="project-cyberops">
                 <img src="img/portfolio/project-cyberops_banner.jpeg" alt="Project CyberOps" class="portfolio-img">
                 <div class="portfolio-info">
-                    <h3 class="portfolio-title">Project CyberOps</h3>
-                    <p class="portfolio-category">A 2D CyberPunk Theme Action Game</p>
+                    <div class="portfolio-text">
+                        <h3 class="portfolio-title">Project CyberOps</h3>
+                        <p class="portfolio-category">A 2D CyberPunk Theme Action Game</p>
+                    </div>
+                    <div class="portfolio-links">
+                        <a href="https://github.com/gr4ndsmurf/Project-CyberOps" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=pXhB3EYcGZA" class="portfolio-link-icon" target="_blank" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -951,8 +108,18 @@
             <div class="portfolio-item" data-project="solid-principles">
                 <img src="img/portfolio/solid-banner.jpeg" alt="Solid Principles" class="portfolio-img">
                 <div class="portfolio-info">
-                    <h3 class="portfolio-title">SOLID Principles</h3>
-                    <p class="portfolio-category">A basic showcase of S.O.L.I.D principles in Unity</p>
+                    <div class="portfolio-text">
+                        <h3 class="portfolio-title">SOLID Principles</h3>
+                        <p class="portfolio-category">A basic showcase of S.O.L.I.D principles in Unity</p>
+                    </div>
+                    <div class="portfolio-links">
+                        <a href="https://github.com/gr4ndsmurf/SOLID-Principles" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=gi0EkKUH2n0" class="portfolio-link-icon" target="_blank" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -960,8 +127,18 @@
             <div class="portfolio-item" data-project="kitchen-chaos">
                 <img src="img/portfolio/KitchenChaosLogo.png" alt="Kitchen Chaos" class="portfolio-img">
                 <div class="portfolio-info">
-                    <h3 class="portfolio-title">Kitchen Chaos</h3>
-                    <p class="portfolio-category">A cooking game tutorial made in Unity</p>
+                    <div class="portfolio-text">
+                        <h3 class="portfolio-title">Kitchen Chaos</h3>
+                        <p class="portfolio-category">A cooking game tutorial made in Unity</p>
+                    </div>
+                    <div class="portfolio-links">
+                        <a href="https://github.com/gr4ndsmurf/KitchenChaos-Clone" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=AmGSEH7QcDg" class="portfolio-link-icon" target="_blank" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -969,8 +146,18 @@
             <div class="portfolio-item" data-project="sword-of-pawrok">
                 <img src="img/portfolio/sop_logo_mini.png" alt="Sword of Pawrok" class="portfolio-img">
                 <div class="portfolio-info">
-                    <h3 class="portfolio-title">Sword of Pawrok</h3>
-                    <p class="portfolio-category">A basic RPG demo made in Unity</p>
+                    <div class="portfolio-text">
+                        <h3 class="portfolio-title">Sword of Pawrok</h3>
+                        <p class="portfolio-category">A basic RPG demo made in Unity</p>
+                    </div>
+                    <div class="portfolio-links">
+                        <a href="https://github.com/gr4ndsmurf/project-rpg" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=zVvVfg3hedA" class="portfolio-link-icon" target="_blank" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -978,8 +165,15 @@
             <div class="portfolio-item" data-project="3d-procedural-animation">
                 <img src="img/portfolio/Procedural-Animation-Banner.jpg" alt="3D Procedural Animation" class="portfolio-img">
                 <div class="portfolio-info">
-                    <h3 class="portfolio-title">3D Procedural Animation</h3>
-                    <p class="portfolio-category">A basic showcase of procedural animation in Unity</p>
+                    <div class="portfolio-text">
+                        <h3 class="portfolio-title">3D Procedural Animation</h3>
+                        <p class="portfolio-category">A basic showcase of procedural animation in Unity</p>
+                    </div>
+                    <div class="portfolio-links">
+                        <a href="https://github.com/gr4ndsmurf/3D-Procedural-Animation" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -987,8 +181,15 @@
             <div class="portfolio-item" data-project="unity-design-patterns">
                 <img src="img/portfolio/designpatterns.png" alt="Unity Design Patterns" class="portfolio-img">
                 <div class="portfolio-info">
-                    <h3 class="portfolio-title">Unity Design Patterns</h3>
-                    <p class="portfolio-category">A basic showcase of design patterns in Unity</p>
+                    <div class="portfolio-text">
+                        <h3 class="portfolio-title">Unity Design Patterns</h3>
+                        <p class="portfolio-category">A basic showcase of design patterns in Unity</p>
+                    </div>
+                    <div class="portfolio-links">
+                        <a href="https://github.com/gr4ndsmurf/Design-Patterns-Unity" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -996,8 +197,15 @@
             <div class="portfolio-item" data-project="Astar-Pathfinding">
                 <img src="img/portfolio/enemyai.png" alt="EnemyAI-StatePattern" class="portfolio-img">
                 <div class="portfolio-info">
-                    <h3 class="portfolio-title">EnemyAI StatePattern</h3>
-                    <p class="portfolio-category">Basic pathfinding system using A* algorithm</p>
+                    <div class="portfolio-text">
+                        <h3 class="portfolio-title">EnemyAI StatePattern</h3>
+                        <p class="portfolio-category">Basic pathfinding system using A* algorithm</p>
+                    </div>
+                    <div class="portfolio-links">
+                        <a href="https://github.com/gr4ndsmurf/EnemyAI-StatePattern" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -1005,8 +213,15 @@
             <div class="portfolio-item" data-project="OOP-SpaceShooter">
                 <img src="img/portfolio/spaceshooter_banner.png" alt="OOP-SpaceShooter" class="portfolio-img">
                 <div class="portfolio-info">
-                    <h3 class="portfolio-title">OOP SpaceShooter</h3>
-                    <p class="portfolio-category">A space shooter game using OOP</p>
+                    <div class="portfolio-text">
+                        <h3 class="portfolio-title">OOP SpaceShooter</h3>
+                        <p class="portfolio-category">A space shooter game using OOP</p>
+                    </div>
+                    <div class="portfolio-links">
+                        <a href="https://github.com/gr4ndsmurf/OOP-SpaceShooter" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -1014,8 +229,15 @@
             <div class="portfolio-item" data-project="SO-CardSystem">
                 <img src="img/portfolio/cardsystem_banner.png" alt="SO-CardSystem" class="portfolio-img">
                 <div class="portfolio-info">
-                    <h3 class="portfolio-title">ScriptableObject CardSystem</h3>
-                    <p class="portfolio-category">Simple card system using ScriptableObjects</p>
+                    <div class="portfolio-text">
+                        <h3 class="portfolio-title">ScriptableObject CardSystem</h3>
+                        <p class="portfolio-category">Simple card system using ScriptableObjects</p>
+                    </div>
+                    <div class="portfolio-links">
+                        <a href="https://github.com/gr4ndsmurf/SO-CardSystem" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -1023,9 +245,17 @@
             <div class="portfolio-item" data-project="Minigolf-Game">
                 <img src="img/portfolio/minigolf_banner.png" alt="Minigolf-Game" class="portfolio-img">
                 <div class="portfolio-info">
-                    <h3 class="portfolio-title">Mini-golf Game</h3>
-                    <p class="portfolio-category">A demo mini-golf game</p>
+                    <div class="portfolio-text">
+                        <h3 class="portfolio-title">Mini-golf Game</h3>
+                        <p class="portfolio-category">A demo mini-golf game</p>
+                    </div>
+                    <div class="portfolio-links">
+                        <a href="https://github.com/gr4ndsmurf/minigolf-game" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
                 </div>
+            </div>
         </div>
     </section>
     
@@ -1084,7 +314,6 @@
         </div>
 
         <div class="about-links-container">
-            <h2 class="links-title">LINKS</h2>
             <div class="social-links">
                 <a href="https://github.com/gr4ndsmurf" class="social-link" aria-label="GitHub" target="_blank">
                     <i class="fab fa-github"></i>
@@ -1103,334 +332,6 @@
     </section>
 
     <!-- JavaScript -->
-    <script>
-        // Title scrolling effect for browser tab
-        let titleText = "Gr4ndSmurf - Unity Game Developer - ";
-        let titleIndex = 0;
-        
-        function scrollTitle() {
-            document.title = titleText.substring(titleIndex) + titleText.substring(0, titleIndex);
-            titleIndex = (titleIndex + 1) % titleText.length;
-            setTimeout(scrollTitle, 150);
-        }
-        
-        // Start title scrolling when page loads
-        window.addEventListener('load', scrollTitle);
-
-        // Project data
-        const projects = {
-            'project-cyberops': {
-                title: 'Project-CyberOps',
-                image: 'img/portfolio/project-cyberops_banner.jpeg',
-                description: 'Immerse yourself in a thrilling 2D action-parkour game set in a dark and technological cyberpunk universe. Test your skills to the limit as you eliminate enemies, solve challenging puzzles to unlock doors and chests, and collect coins throughout each level.',
-                githubLink: 'https://github.com/gr4ndsmurf/Project-CyberOps',
-                youtubeLink: 'https://www.youtube.com/watch?v=pXhB3EYcGZA'
-            },
-            'solid-principles': {
-                title: 'Solid Principles',
-                image: 'img/portfolio/solid-banner.jpeg',
-                description: 'A demo showcase game that simply presents the S.O.L.I.D principles in Unity 3D using C#.',
-                githubLink: 'https://github.com/gr4ndsmurf/SOLID-Principles',
-                youtubeLink: 'https://www.youtube.com/watch?v=gi0EkKUH2n0'
-            },
-            'kitchen-chaos': {
-                title: 'Kitchen Chaos',
-                image: 'img/portfolio/KitchenChaosLogo.png',
-                description: 'Code Monkeys Kitchen Chaos game tutorial, a 10 hour course making a complete game from scratch! The game features lots of interesting systems which makes for a great learning project.',
-                githubLink: 'https://github.com/gr4ndsmurf/KitchenChaos-Clone',
-                youtubeLink: 'https://www.youtube.com/watch?v=AmGSEH7QcDg'
-            },
-            'sword-of-pawrok': {
-                title: 'Sword of Pawrok',
-                image: 'img/portfolio/sop_logo_mini.png',
-                description: 'RPG demo made with Unity',
-                githubLink: 'https://github.com/gr4ndsmurf/project-rpg',
-                youtubeLink: 'https://www.youtube.com/watch?v=zVvVfg3hedA'
-            },
-            '3d-procedural-animation': {
-                title: '3D Procedural Animation',
-                image: 'img/portfolio/Procedural-Animation-Banner.jpg',
-                description: '3D Procedural Animation system focuses on achieving natural, responsive, and contextually-driven animations for characters. We aim to create animations that adapt to the environment and player actions in real-time, enhancing the overall immersion and gameplay experience.',
-                githubLink: 'https://github.com/gr4ndsmurf/3D-Procedural-Animation',
-                youtubeLink: ''
-            },
-            'unity-design-patterns': {
-                title: 'Unity Design Patterns',
-                image: 'img/portfolio/designpatterns.png',
-                description: 'This repository demonstrates the implementation of various design patterns in Unity using C#. Each design pattern is showcased through a separate example within this project.',
-                githubLink: 'https://github.com/gr4ndsmurf/Design-Patterns-Unity',
-                youtubeLink: ''
-            },
-            'Astar-Pathfinding': {
-                title: 'EnemyAI-StatePattern',
-                image: 'img/portfolio/enemyai.png',
-                description: 'Enemy AI (with A* pathfinding) made in Unity using State Pattern.',
-                githubLink: 'https://github.com/gr4ndsmurf/EnemyAI-StatePattern',
-                youtubeLink: ''
-            },
-            'OOP-SpaceShooter': {
-                title: 'OOP-SpaceShooter',
-                image: 'img/portfolio/spaceshooter_banner.png',
-                description: 'This project was inspired by the classic space shooter games and developed as a demonstration of object-oriented programming techniques in Unity.',
-                githubLink: 'https://github.com/gr4ndsmurf/OOP-SpaceShooter',
-                youtubeLink: ''
-            },
-            'SO-CardSystem': {
-                title: 'SO-CardSystem',
-                image: 'img/portfolio/cardsystem_banner.png',
-                description: 'This project demonstrates a basic card system in Unity, allowing you to create and manage cards using ScriptableObjects.',
-                githubLink: 'https://github.com/gr4ndsmurf/SO-CardSystem',
-                youtubeLink: ''
-            },
-            'Minigolf-Game': {
-                title: 'Minigolf-Game',
-                image: 'img/portfolio/minigolf_banner.png',
-                description: 'Minigolf Game made in Unity',
-                githubLink: 'https://github.com/gr4ndsmurf/minigolf-game',
-                youtubeLink: ''
-            }
-        };
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            header.classList.toggle('scrolled', window.scrollY > 50);
-            
-            // Get all sections
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            // Find which section is in view
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            // Set active class for current section
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        
-        hamburger.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                hamburger.classList.remove('active');
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            // Skip modal project links
-            if (anchor.classList.contains('modal-project-link')) return;
-            
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    // For contact section, ensure we scroll all the way
-                    const offset = targetId === '#contact' ? 50 : 80;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - offset;
-                    
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Modal functionality
-        const modalOverlay = document.querySelector('.modal-overlay');
-        const modal = document.querySelector('.modal');
-        const modalClose = document.querySelector('.modal-close');
-        const modalTitle = document.querySelector('.modal-title');
-        const modalImg = document.querySelector('.modal-img');
-        const modalDescription = document.querySelector('.modal-description');
-        const githubLink = document.querySelector('.github-link');
-        const youtubeLink = document.querySelector('.youtube-link');
-        
-        // Open modal when clicking on portfolio item
-        document.querySelectorAll('.portfolio-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const projectId = item.getAttribute('data-project');
-                const project = projects[projectId];
-                
-                if (project) {
-                    modalTitle.textContent = project.title;
-                    modalImg.src = project.image;
-                    modalImg.alt = project.title;
-                    modalDescription.textContent = project.description;
-                    
-                    // Set GitHub link and visibility
-                    if (project.githubLink && project.githubLink.trim() !== '') {
-                        githubLink.href = project.githubLink;
-                        githubLink.style.display = 'flex';
-                    } else {
-                        githubLink.style.display = 'none';
-                    }
-                    
-                    // Set YouTube link and visibility
-                    if (project.youtubeLink && project.youtubeLink.trim() !== '') {
-                        youtubeLink.href = project.youtubeLink;
-                        youtubeLink.style.display = 'flex';
-                    } else {
-                        youtubeLink.style.display = 'none';
-                    }
-                    
-                    modalOverlay.classList.add('active');
-                    document.body.classList.add('modal-open');
-                    
-                    // Animation
-                    setTimeout(() => {
-                        modal.style.transform = 'translateY(0)';
-                        modal.style.opacity = '1';
-                    }, 100);
-                }
-            });
-        });
-        
-        // Close modal
-        modalClose.addEventListener('click', () => {
-            closeModal();
-        });
-        
-        // Close modal when clicking outside
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                closeModal();
-            }
-        });
-        
-        // Prevent modal links from closing the modal
-        document.querySelectorAll('.modal-project-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.stopPropagation();
-                
-                // Make sure the link actually navigates
-                const href = link.getAttribute('href');
-                if (href && href !== '#') {
-                    // Open in new tab
-                    window.open(href, '_blank');
-                }
-            });
-        });
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-                closeModal();
-            }
-        });
-        
-        function closeModal() {
-            modal.style.transform = 'translateY(50px)';
-            modal.style.opacity = '0';
-            
-            setTimeout(() => {
-                modalOverlay.classList.remove('active');
-                document.body.classList.remove('modal-open');
-            }, 300);
-        }
-
-        // Reveal animations on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            if (section.classList.contains('hero')) return;
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(section);
-        });
-
-        // Add the show class for the animation
-        document.documentElement.style.setProperty('--show-opacity', '1');
-        document.documentElement.style.setProperty('--show-transform', 'translateY(0)');
-        document.head.insertAdjacentHTML('beforeend', `
-            <style>
-                .show {
-                    opacity: 1 !important;
-                    transform: translateY(0) !important;
-                }
-            </style>
-        `);
-
-        // Particle background effect
-        const createParticles = () => {
-            const hero = document.querySelector('.hero');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.style.position = 'absolute';
-                particle.style.width = `${Math.random() * 5 + 1}px`;
-                particle.style.height = particle.style.width;
-                particle.style.background = 'rgba(255, 255, 255, 0.5)';
-                particle.style.borderRadius = '50%';
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.opacity = `${Math.random() * 0.5}`;
-                particle.style.animation = `float ${Math.random() * 10 + 5}s linear infinite`;
-                particle.style.zIndex = '-1';
-                
-                // Create keyframes for floating animation
-                const keyframes = `
-                    @keyframes float {
-                        0% {
-                            transform: translateY(0) translateX(0);
-                        }
-                        50% {
-                            transform: translateY(${Math.random() * 100 - 50}px) translateX(${Math.random() * 100 - 50}px);
-                        }
-                        100% {
-                            transform: translateY(0) translateX(0);
-                        }
-                    }
-                `;
-                
-                // Add keyframes to document
-                if (!document.querySelector(`style[data-particle="${i}"]`)) {
-                    const style = document.createElement('style');
-                    style.setAttribute('data-particle', i);
-                    style.textContent = keyframes;
-                    document.head.appendChild(style);
-                }
-                
-                hero.appendChild(particle);
-            }
-        };
-        
-        // Initialize particles
-        window.addEventListener('load', createParticles);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
