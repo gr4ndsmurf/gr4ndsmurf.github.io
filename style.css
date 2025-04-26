@@ -544,7 +544,7 @@ header.scrolled {
 .portfolio-tags {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
     gap: 0.3rem;
     margin-top: 1rem;
     font-size: 0.85rem;
@@ -842,14 +842,14 @@ header.scrolled {
 }
 
 .modal-tags-container {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .modal-tags-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
     color: var(--color-text);
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .modal-tags {
@@ -1048,7 +1048,7 @@ body.modal-open {
 
 /* About Section */
 .about {
-    padding: 6rem 2rem;
+    padding: 1rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
