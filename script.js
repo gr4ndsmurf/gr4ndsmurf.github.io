@@ -105,6 +105,14 @@ const projects = {
         githubLink: 'https://github.com/gr4ndsmurf/minigolf-game',
         youtubeLink: '',
         tags: ['Unity', 'C#', 'Demo']
+    },
+    'Stack-Clone': {
+        title: 'Stack-Clone',
+        image: 'img/portfolio/Stack_banner.gif',
+        description: 'A simple clone of the popular mobile game "Stack", recreated for learning and practice purposes.',
+        githubLink: 'https://github.com/gr4ndsmurf/Stack-Clone',
+        youtubeLink: '',
+        tags: ['Unity', 'C#', 'Demo']
     }
 };
 
