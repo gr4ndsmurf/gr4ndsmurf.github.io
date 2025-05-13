@@ -113,6 +113,14 @@ const projects = {
         githubLink: 'https://github.com/gr4ndsmurf/Stack-Clone',
         youtubeLink: '',
         tags: ['Unity', 'C#', 'Demo']
+    },
+    'MatchBlock3D-Clone': {
+        title: 'MatchBlock3D-Clone',
+        image: 'img/portfolio/MatchBlock3D.jpeg',
+        description: 'A simple clone of the popular mobile game "Match Block 3D", recreated for learning and practice purposes.',
+        githubLink: 'https://github.com/gr4ndsmurf/MatchBlock3D-Clone',
+        youtubeLink: '',
+        tags: ['Unity', 'C#', 'Demo']
     }
 };
 
