@@ -121,6 +121,14 @@ const projects = {
         githubLink: 'https://github.com/gr4ndsmurf/MatchBlock3D-Clone',
         youtubeLink: '',
         tags: ['Unity', 'C#', 'Demo']
+    },
+    'HyperCasual-CharacterController': {
+        title: 'HyperCasual-CharacterController',
+        image: 'img/portfolio/HyperCasual-CharacterController.png',
+        description: 'A modular Character Controller built specifically for Hyper Casual games in Unity.',
+        githubLink: 'https://github.com/gr4ndsmurf/HyperCasual-CharacterController',
+        youtubeLink: '',
+        tags: ['Unity', 'C#', 'Demo']
     }
 };
 
