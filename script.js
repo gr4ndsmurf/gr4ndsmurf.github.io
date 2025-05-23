@@ -21,6 +21,8 @@ const tagPool = [
     'Architecture',
     'Game',
     'Demo',
+    'PC',
+    'Mobile',
     'Animation'
 ];
 
@@ -32,7 +34,7 @@ const projects = {
         description: 'Immerse yourself in a thrilling 2D action-parkour game set in a dark and technological cyberpunk universe. Test your skills to the limit as you eliminate enemies, solve challenging puzzles to unlock doors and chests, and collect coins throughout each level.',
         githubLink: 'https://github.com/gr4ndsmurf/Project-CyberOps',
         youtubeLink: 'https://www.youtube.com/watch?v=pXhB3EYcGZA',
-        tags: ['Unity', 'C#', 'Pathfinding', 'AI', 'Programming', 'Demo']
+        tags: ['Unity', 'C#', 'Pathfinding', 'AI', 'Programming', 'Demo', 'PC']
     },
     'solid-principles': {
         title: 'Solid Principles',
@@ -48,7 +50,7 @@ const projects = {
         description: 'Code Monkeys Kitchen Chaos game tutorial, a 10 hour course making a complete game from scratch! The game features lots of interesting systems which makes for a great learning project.',
         githubLink: 'https://github.com/gr4ndsmurf/KitchenChaos-Clone',
         youtubeLink: 'https://www.youtube.com/watch?v=AmGSEH7QcDg',
-        tags: ['Unity', 'C#', 'Game']
+        tags: ['Unity', 'C#', 'Game', 'PC']
     },
     'sword-of-pawrok': {
         title: 'Sword of Pawrok',
@@ -56,7 +58,7 @@ const projects = {
         description: 'RPG demo made with Unity',
         githubLink: 'https://github.com/gr4ndsmurf/project-rpg',
         youtubeLink: 'https://www.youtube.com/watch?v=zVvVfg3hedA',
-        tags: ['Unity', 'C#', 'Demo']
+        tags: ['Unity', 'C#', 'Demo', 'PC']
     },
     '3d-procedural-animation': {
         title: '3D Procedural Animation',
@@ -88,7 +90,7 @@ const projects = {
         description: 'This project was inspired by the classic space shooter games and developed as a demonstration of object-oriented programming techniques in Unity.',
         githubLink: 'https://github.com/gr4ndsmurf/OOP-SpaceShooter',
         youtubeLink: '',
-        tags: ['Unity', 'C#', 'Architecture', 'Programming', 'AI', 'Game']
+        tags: ['Unity', 'C#', 'Architecture', 'Programming', 'AI', 'Game', 'PC']
     },
     'SO-CardSystem': {
         title: 'SO-CardSystem',
@@ -104,7 +106,7 @@ const projects = {
         description: 'Minigolf Game made in Unity',
         githubLink: 'https://github.com/gr4ndsmurf/minigolf-game',
         youtubeLink: '',
-        tags: ['Unity', 'C#', 'Demo']
+        tags: ['Unity', 'C#', 'Demo', 'PC', 'Mobile']
     },
     'Stack-Clone': {
         title: 'Stack-Clone',
@@ -112,7 +114,7 @@ const projects = {
         description: 'A simple clone of the popular mobile game "Stack", recreated for learning and practice purposes.',
         githubLink: 'https://github.com/gr4ndsmurf/Stack-Clone',
         youtubeLink: '',
-        tags: ['Unity', 'C#', 'Demo']
+        tags: ['Unity', 'C#', 'Demo', 'Mobile']
     },
     'MatchBlock3D-Clone': {
         title: 'MatchBlock3D-Clone',
@@ -120,7 +122,7 @@ const projects = {
         description: 'A simple clone of the popular mobile game "Match Block 3D", recreated for learning and practice purposes.',
         githubLink: 'https://github.com/gr4ndsmurf/MatchBlock3D-Clone',
         youtubeLink: '',
-        tags: ['Unity', 'C#', 'Demo']
+        tags: ['Unity', 'C#', 'Demo', 'Mobile']
     },
     'HyperCasual-CharacterController': {
         title: 'HyperCasual-CharacterController',
@@ -128,7 +130,15 @@ const projects = {
         description: 'A modular Character Controller built specifically for Hyper Casual games in Unity.',
         githubLink: 'https://github.com/gr4ndsmurf/HyperCasual-CharacterController',
         youtubeLink: '',
-        tags: ['Unity', 'C#', 'Demo']
+        tags: ['Unity', 'C#', 'Demo', 'Mobile']
+    },
+    'OfficeFever-Clone': {
+        title: 'OfficeFever-Clone',
+        image: 'img/portfolio/office-fever.png',
+        description: 'A simple Unity clone of the popular mobile game Office Fever. Built for educational purposes to explore game mechanics and mobile optimization techniques.',
+        githubLink: 'https://github.com/gr4ndsmurf/HyperCasual-CharacterController',
+        youtubeLink: '',
+        tags: ['Unity', 'C#', 'Demo', 'Mobile']
     }
 };
 
