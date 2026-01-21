@@ -8,7 +8,6 @@ function scrollTitle() {
     setTimeout(scrollTitle, 150);
 }
 
-// Start title scrolling when page loads
 window.addEventListener('load', scrollTitle);
 
 // Merkezi etiket havuzu
@@ -146,70 +145,25 @@ const projects = {
 window.addEventListener('scroll', function() {
     const header = document.querySelector('header');
     header.classList.toggle('scrolled', window.scrollY > 50);
-    
-    // Get all sections
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    // Find which section is in view
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    // Set active class for current section
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
+    // Removed old highlight logic to keep it simple with the new windows layout
 });
 
 // Mobile menu toggle
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', function() {
-    navLinks.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
+if(hamburger) {
+    hamburger.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
+}
 
 // Close mobile menu when clicking a link
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
-    });
-});
-
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    // Skip modal project links
-    if (anchor.classList.contains('modal-project-link')) return;
-    
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            // For contact section, ensure we scroll all the way
-            const offset = targetId === '#contact' ? 50 : 80;
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - offset;
-            
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
+        if(navLinks) navLinks.classList.remove('active');
+        if(hamburger) hamburger.classList.remove('active');
     });
 });
 
@@ -223,9 +177,14 @@ const modalDescription = document.querySelector('.modal-description');
 const githubLink = document.querySelector('.github-link');
 const youtubeLink = document.querySelector('.youtube-link');
 
-// Open modal when clicking on portfolio item
-document.querySelectorAll('.portfolio-item').forEach(item => {
-    item.addEventListener('click', () => {
+// Open modal when clicking on desktop icon
+// Using delegation on .portfolio-grid to capture clicks on .desktop-icon-container
+const portfolioGrid = document.querySelector('.portfolio-grid');
+if(portfolioGrid) {
+    portfolioGrid.addEventListener('click', (e) => {
+        const item = e.target.closest('.desktop-icon-container');
+        if (!item) return;
+
         const projectId = item.getAttribute('data-project');
         const project = projects[projectId];
         
@@ -235,7 +194,7 @@ document.querySelectorAll('.portfolio-item').forEach(item => {
             modalImg.alt = project.title;
             modalDescription.textContent = project.description;
             
-            // Set GitHub link and visibility
+            // Set GitHub link
             if (project.githubLink && project.githubLink.trim() !== '') {
                 githubLink.href = project.githubLink;
                 githubLink.style.display = 'flex';
@@ -243,7 +202,7 @@ document.querySelectorAll('.portfolio-item').forEach(item => {
                 githubLink.style.display = 'none';
             }
             
-            // Set YouTube link and visibility
+            // Set YouTube link
             if (project.youtubeLink && project.youtubeLink.trim() !== '') {
                 youtubeLink.href = project.youtubeLink;
                 youtubeLink.style.display = 'flex';
@@ -259,6 +218,10 @@ document.querySelectorAll('.portfolio-item').forEach(item => {
                 project.tags.forEach(tag => {
                     const tagElement = document.createElement('span');
                     tagElement.classList.add('project-tag', 'modal-tag');
+                    tagElement.style.border = '1px solid black';
+                    tagElement.style.padding = '2px 4px';
+                    tagElement.style.background = 'white';
+                    tagElement.style.marginRight = '4px';
                     tagElement.textContent = tag;
                     modalTagsContainer.appendChild(tagElement);
                 });
@@ -266,155 +229,79 @@ document.querySelectorAll('.portfolio-item').forEach(item => {
             
             modalOverlay.classList.add('active');
             document.body.classList.add('modal-open');
-            
-            // Animation
-            setTimeout(() => {
-                modal.style.transform = 'translateY(0)';
-                modal.style.opacity = '1';
-            }, 100);
         }
     });
-});
+}
 
 // Close modal
-modalClose.addEventListener('click', () => {
-    closeModal();
-});
+if(modalClose) {
+    modalClose.addEventListener('click', () => {
+        closeModal();
+    });
+}
 
 // Close modal when clicking outside
-modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) {
-        closeModal();
-    }
-});
-
-// Prevent modal links from closing the modal
-document.querySelectorAll('.modal-project-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.stopPropagation();
-        
-        // Make sure the link actually navigates
-        const href = link.getAttribute('href');
-        if (href && href !== '#') {
-            // Open in new tab
-            window.open(href, '_blank');
+if(modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            closeModal();
         }
     });
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-        closeModal();
-    }
-});
+}
 
 function closeModal() {
-    modal.style.transform = 'translateY(50px)';
-    modal.style.opacity = '0';
-    
-    setTimeout(() => {
-        modalOverlay.classList.remove('active');
-        document.body.classList.remove('modal-open');
-    }, 300);
+    if(modalOverlay) modalOverlay.classList.remove('active');
+    document.body.classList.remove('modal-open');
 }
 
-// Reveal animations on scroll
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        }
-    });
-}, { threshold: 0.1 });
-
-// Observe all sections
-document.querySelectorAll('section').forEach(section => {
-    if (section.classList.contains('hero')) return;
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(30px)';
-    section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-    observer.observe(section);
-});
-
-// Add the modal tags container to the observer for animations
-const modalTagsContainer = document.querySelector('.modal-tags-container');
-if (modalTagsContainer) {
-    modalTagsContainer.style.opacity = '0';
-    modalTagsContainer.style.transform = 'translateY(10px)';
-    modalTagsContainer.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    
-    // Add animation when modal opens
-    const modalObserver = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.target.classList.contains('active')) {
-                setTimeout(() => {
-                    modalTagsContainer.style.opacity = '1';
-                    modalTagsContainer.style.transform = 'translateY(0)';
-                }, 300);
-            } else {
-                modalTagsContainer.style.opacity = '0';
-                modalTagsContainer.style.transform = 'translateY(10px)';
-            }
-        });
-    });
-    
-    modalObserver.observe(modalOverlay, { attributes: true, attributeFilter: ['class'] });
-}
-
-// Add the show class for the animation
-document.documentElement.style.setProperty('--show-opacity', '1');
-document.documentElement.style.setProperty('--show-transform', 'translateY(0)');
-
-// Particle background effect - Simplified version
+// Particle background effect (Adapted for new Hero)
 const createParticles = () => {
-    const hero = document.querySelector('.hero');
-    const particleCount = 30; // Reduced particle count for better performance
+    // Append to window body of hero
+    const heroContent = document.querySelector('#hero .window-body'); 
     
-    // Create a single style element for all particles
+    // Safety check
+    if(!heroContent) return;
+
+    const particleCount = 20; 
     const styleElement = document.createElement('style');
     let keyframesCSS = '';
     
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.style.position = 'absolute';
-        particle.style.width = `${Math.random() * 5 + 1}px`;
+        particle.style.width = `${Math.random() * 4 + 2}px`;
         particle.style.height = particle.style.width;
-        particle.style.background = 'rgba(255, 255, 255, 0.5)';
-        particle.style.borderRadius = '50%';
+        particle.style.background = 'var(--synth-cyan)'; // Use synthwave color
+        particle.style.boxShadow = '0 0 5px var(--synth-cyan)';
         particle.style.top = `${Math.random() * 100}%`;
         particle.style.left = `${Math.random() * 100}%`;
-        particle.style.opacity = `${Math.random() * 0.5}`;
+        particle.style.opacity = `${Math.random() * 0.7}`;
         particle.style.animation = `float${i} ${Math.random() * 10 + 5}s linear infinite`;
-        particle.style.zIndex = '-1';
-        
-        // Add keyframes to the collective CSS
+        particle.style.zIndex = '0'; // Behind content but visible
+        particle.style.pointerEvents = 'none';
+
         keyframesCSS += `
             @keyframes float${i} {
-                0% { transform: translateY(0) translateX(0); }
-                50% { transform: translateY(${Math.random() * 100 - 50}px) translateX(${Math.random() * 100 - 50}px); }
-                100% { transform: translateY(0) translateX(0); }
+                0% { transform: translate(0, 0); }
+                50% { transform: translate(${Math.random() * 60 - 30}px, ${Math.random() * 60 - 30}px); }
+                100% { transform: translate(0, 0); }
             }
         `;
-        
-        hero.appendChild(particle);
+        heroContent.appendChild(particle);
     }
-    
-    // Add all keyframes at once
-    styleElement.textContent = keyframesCSS;
     document.head.appendChild(styleElement);
+    styleElement.textContent = keyframesCSS;
 };
 
-// Initialize particles
-window.addEventListener('load', createParticles);
-
-// Portfolio search and tag functionality
+// Functionality for Search and Filter
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('portfolio-search');
     const clearButton = document.getElementById('clear-search');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    const items = document.querySelectorAll('.desktop-icon-container'); // CHANGED SELECTOR
     const tagsListContainer = document.getElementById('tags-list');
     
+    createParticles();
+
     // Etiket havuzundan etiketleri oluştur
     tagPool.sort().forEach(tag => {
         const tagElement = document.createElement('span');
@@ -423,15 +310,14 @@ document.addEventListener('DOMContentLoaded', function() {
         tagElement.setAttribute('data-tag', tag);
         tagsListContainer.appendChild(tagElement);
         
-        // Add click event for filtering
         tagElement.addEventListener('click', function() {
             this.classList.toggle('active');
             filterProjects();
         });
     });
     
-    // Add tags to each portfolio item
-    portfolioItems.forEach(item => {
+    // Add tags to hidden data for search
+    items.forEach(item => {
         const projectId = item.getAttribute('data-project');
         const project = projects[projectId];
         const tagsContainer = item.querySelector('.portfolio-tags');
@@ -439,121 +325,57 @@ document.addEventListener('DOMContentLoaded', function() {
         if (project && project.tags && tagsContainer) {
             project.tags.forEach(tag => {
                 const tagElement = document.createElement('span');
-                tagElement.classList.add('project-tag');
-                tagElement.textContent = tag;
+                tagElement.textContent = tag; 
+                // We just place them here so textContent search works
                 tagsContainer.appendChild(tagElement);
             });
         }
     });
-    
-    // Birleşik filtreleme fonksiyonu
+
     function filterProjects() {
+        if(!searchInput) return;
         const searchTerm = searchInput.value.toLowerCase().trim();
         const activeTags = Array.from(document.querySelectorAll('.filter-tag.active')).map(tag => 
             tag.getAttribute('data-tag')
         );
         
-        portfolioItems.forEach(item => {
+        items.forEach(item => {
             const projectId = item.getAttribute('data-project');
             const project = projects[projectId];
-            const title = item.querySelector('.portfolio-title').textContent.toLowerCase();
-            const category = item.querySelector('.portfolio-category').textContent.toLowerCase();
             
-            // Arama terimiyle eşleşme kontrolü
+            // Search match
             const matchesSearch = searchTerm === '' || 
-                title.includes(searchTerm) || 
-                category.includes(searchTerm) || 
-                projectId.includes(searchTerm) ||
-                (project.tags && project.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+                (project && (
+                    project.title.toLowerCase().includes(searchTerm) || 
+                    project.description.toLowerCase().includes(searchTerm) ||
+                    (project.tags && project.tags.some(tag => tag.toLowerCase().includes(searchTerm)))
+                ));
             
-            // Aktif etiketlerle eşleşme kontrolü
+            // Tag match
             const matchesTags = activeTags.length === 0 || 
-                (project.tags && activeTags.every(tag => project.tags.includes(tag)));
+                (project && project.tags && activeTags.every(tag => project.tags.includes(tag)));
             
-            // Birleşik filtrelere göre göster/gizle
             if (matchesSearch && matchesTags) {
-                item.style.display = '';
-                // Görünen öğeler için hafif animasyon ekle
-                item.style.opacity = '0';
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                }, 50);
+                item.style.display = 'flex';
             } else {
                 item.style.display = 'none';
             }
         });
     }
     
-    // Kullanıcı yazarken arama yap
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase().trim();
-        
-        // Girişe göre temizleme düğmesini göster/gizle
-        if (searchTerm.length > 0) {
-            clearButton.classList.add('visible');
-        } else {
-            clearButton.classList.remove('visible');
-        }
-        
-        filterProjects();
-    });
-    
-    // Arama ve etiket filtrelerini temizle
-    clearButton.addEventListener('click', function() {
-        searchInput.value = '';
-        clearButton.classList.remove('visible');
-        
-        // Aktif etiketleri temizle
-        document.querySelectorAll('.filter-tag.active').forEach(tag => {
-            tag.classList.remove('active');
+    if(searchInput) {
+        searchInput.addEventListener('input', function() {
+            filterProjects();
         });
-        
-        // Tüm portfolyo öğelerini göster
-        portfolioItems.forEach(item => {
-            item.style.display = '';
-            // Yumuşak görünüm animasyonu
-            item.style.opacity = '0';
-            setTimeout(() => {
-                item.style.opacity = '1';
-            }, 50);
-        });
-        
-        // Arama girdisine odaklan
-        searchInput.focus();
-    });
-
+    }
     
-    // Etiket tıklama işlevselliği - Optimize edilmiş
-    // Delegasyon kullanarak tüm etiketler için tek bir olay dinleyici
-    document.addEventListener('click', function(e) {
-        // Proje etiketi tıklandığında
-        if (e.target.classList.contains('project-tag')) {
-            e.stopPropagation(); // Modal açılmasını engelle
-            
-            const tagText = e.target.textContent;
-            const filterTag = document.querySelector(`.filter-tag[data-tag="${tagText}"]`);
-            
-            if (filterTag) {
-                // Diğer aktif etiketleri temizle
-                document.querySelectorAll('.filter-tag.active').forEach(t => {
-                    t.classList.remove('active');
-                });
-                
-                // Bu etiketi aktifleştir
-                filterTag.classList.add('active');
-                
-                // Eğer modaldaysak, modalı kapat
-                if (modalOverlay.classList.contains('active')) {
-                    closeModal();
-                }
-                
-                // Portfolio bölümüne kaydır
-                document.querySelector('#portfolio').scrollIntoView({ behavior: 'smooth' });
-                
-                // Filtrelemeyi uygula
-                filterProjects();
-            }
-        }
-    });
-
+    if(clearButton) {
+        clearButton.addEventListener('click', function() {
+            if(searchInput) searchInput.value = '';
+            document.querySelectorAll('.filter-tag.active').forEach(tag => {
+                tag.classList.remove('active');
+            });
+            filterProjects();
+        });
+    }
 });

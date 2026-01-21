@@ -6,13 +6,21 @@
     <title>gr4ndsmurf - Game Developer</title>
     <link rel="icon" type="image/png" href="img/gr4ndsmurf_logo_v1.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Retro Background Elements -->
+    <div class="scanlines"></div>
+    <div class="synthwave-grid"></div>
+    <div class="synthwave-sun"></div>
+
+    <!-- Header / Taskbar -->
     <header>
         <div class="header-container">
-            <a href="#hero" class="logo">GR4NDSMURF</a>
+            <a href="#hero" class="logo">
+                <i class="fab fa-windows"></i> GR4NDSMURF.OS
+            </a>
             <nav>
                 <div class="hamburger">
                     <div class="line1"></div>
@@ -20,430 +28,301 @@
                     <div class="line3"></div>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#portfolio" class="nav-link"><i class="fas fa-briefcase"></i> Portfolio</a></li>
-                    <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> About</a></li>
-                    <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="#portfolio" class="nav-link"><i class="fas fa-briefcase"></i> Programs</a></li>
+                    <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> System Info</a></li>
+                    <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Mail</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-content">
-            <div class="profile-img-container">
-                <img src="img/1024x1024_g4_logo.png" alt="Akın Haydaroğlu" class="profile-img">
-            </div>
-            <h1 class="hero-title">Akın Haydaroğlu</h1>
-            
-            <div class="divider">
-                <div class="divider-icon">
-                    <i class="fas fa-keyboard keyboard-icon"></i>
+    <main class="desktop-environment">
+        <!-- Hero Section -->
+        <section id="hero" class="window active-window" style="z-index: 10;">
+            <div class="title-bar">
+                <div class="title-bar-text">C:\Users\gr4ndsmurf</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
-            
-            <p class="hero-description">Unity Game Developer</p>
-            
-            <h2 class="links-title">LINKS</h2>
-            <div class="social-links">
-                <a href="https://github.com/gr4ndsmurf" class="social-link" aria-label="GitHub" target="_blank">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://gr4ndsmurf.itch.io" class="social-link" aria-label="ItchIO" target="_blank">
-                    <i class="fab fa-itch-io"></i>
-                </a>
-                <a href="https://x.com/gr4ndsmurf" class="social-link" aria-label="Twitter" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/akinhaydaroglu/" class="social-link" aria-label="LinkedIn" target="_blank">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="mailto:akinhaydaroglu28@gmail.com" class="social-link" aria-label="Email">
-                    <i class="fa-solid fa-envelope"></i>
-                </a>
+            <div class="window-body">
+                <div class="hero-content">
+                    <div class="profile-layout">
+                        <div class="profile-img-container">
+                            <img src="img/1024x1024_g4_logo.png" alt="Akın Haydaroğlu" class="profile-img">
+                        </div>
+                        <div class="profile-info">
+                            <h1 class="hero-title">Akın Haydaroğlu</h1>
+                            <p class="hero-description">Unity Game Developer</p>
+                            <div class="status-badge">STATUS: ONLINE</div>
+                        </div>
+                    </div>
+                    
+                    <fieldset class="retro-fieldset">
+                        <legend>Connectivity</legend>
+                        <div class="social-links">
+                            <a href="https://github.com/gr4ndsmurf" class="social-button" aria-label="GitHub" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://gr4ndsmurf.itch.io" class="social-button" aria-label="ItchIO" target="_blank">
+                                <i class="fab fa-itch-io"></i> Itch.io
+                            </a>
+                            <a href="https://x.com/gr4ndsmurf" class="social-button" aria-label="Twitter" target="_blank">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                            <a href="https://www.linkedin.com/in/akinhaydaroglu/" class="social-button" aria-label="LinkedIn" target="_blank">
+                                <i class="fab fa-linkedin-in"></i> LinkedIn
+                            </a>
+                            <a href="mailto:akinhaydaroglu28@gmail.com" class="social-button" aria-label="Email">
+                                <i class="fa-solid fa-envelope"></i> Email
+                            </a>
+                        </div>
+                    </fieldset>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <div class="section-title-container">
-            <h2 class="section-title">PORTFOLIO</h2>
-            <div class="title-divider">
-                <i class="fas fa-briefcase star-icon"></i>
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="window" style="margin-top: 2rem;">
+            <div class="title-bar">
+                <div class="title-bar-text">C:\Users\gr4ndsmurf\Portfolio.exe</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
             </div>
-        </div>
+            <div class="window-body">
+                <div class="menu-bar">
+                    <span><u>F</u>ile</span>
+                    <span><u>E</u>dit</span>
+                    <span><u>V</u>iew</span>
+                    <span><u>H</u>elp</span>
+                </div>
+                
+                <div class="search-container">
+                    <label for="portfolio-search">Find:</label>
+                    <div class="search-box">
+                        <input type="text" id="portfolio-search" placeholder="*.projects">
+                        <button id="clear-search" class="retro-button">Clear</button>
+                    </div>
+                </div>
+
+                <div class="tags-filter-container">
+                    <div class="tags-title">Filter attributes:</div>
+                    <div class="tags-list" id="tags-list">
+                        <!-- Tags will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <div class="visual-separator"></div>
+                
+                <div class="portfolio-grid">
+                    <!-- Project Design Patterns -->
+                    <div class="desktop-icon-container" data-project="unity-design-patterns">
+                        <div class="desktop-icon">
+                            <img src="img/portfolio/designpatterns.png" alt="Unity Design Patterns">
+                        </div>
+                        <div class="icon-label">Game-Design-Patterns.docx</div>
+                        <div class="hidden-data">
+                             <h3 class="portfolio-title">Unity Design Patterns</h3>
+                             <p class="portfolio-category">A basic showcase of design patterns in Unity</p>
+                             <div class="portfolio-tags"></div>
+                             <a href="https://github.com/gr4ndsmurf/Design-Patterns-Unity" class="portfolio-link-icon"></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project SOLID -->
+                    <div class="desktop-icon-container" data-project="solid-principles">
+                         <div class="desktop-icon">
+                            <img src="img/portfolio/solid-banner.jpeg" alt="Solid Principles">
+                        </div>
+                        <div class="icon-label">Solid-Principles.docx</div>
+                        <div class="hidden-data">
+                            <h3 class="portfolio-title">SOLID Principles</h3>
+                            <p class="portfolio-category">A basic showcase of S.O.L.I.D principles in Unity</p>
+                            <div class="portfolio-tags"></div>
+                            <a href="https://github.com/gr4ndsmurf/SOLID-Principles" class="portfolio-link-icon"></a>
+                            <a href="https://www.youtube.com/watch?v=gi0EkKUH2n0" class="portfolio-link-icon"></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project Pathfinding -->
+                    <div class="desktop-icon-container" data-project="Astar-Pathfinding">
+                        <div class="desktop-icon">
+                            <img src="img/portfolio/enemyai.png" alt="EnemyAI-StatePattern">
+                        </div>
+                        <div class="icon-label">EnemyAI.exe</div>
+                    </div>
+                    
+                    <!-- Project 3D Procedural Animation -->
+                    <div class="desktop-icon-container" data-project="3d-procedural-animation">
+                        <div class="desktop-icon">
+                            <img src="img/portfolio/Procedural-Animation-Banner.jpg" alt="3D Procedural Animation">
+                        </div>
+                        <div class="icon-label">Procedural-Animation.exe</div>
+                    </div>
+                    
+                    <!-- Project CyberOps -->
+                    <div class="desktop-icon-container" data-project="project-cyberops">
+                        <div class="desktop-icon">
+                            <img src="img/portfolio/project-cyberops_banner.jpeg" alt="Project CyberOps">
+                        </div>
+                        <div class="icon-label">Project-CyberOps.exe</div>
+                    </div>
+                    
+                    <!-- Project Kitchen Chaos -->
+                    <div class="desktop-icon-container" data-project="kitchen-chaos">
+                        <div class="desktop-icon">
+                            <img src="img/portfolio/KitchenChaosLogo.png" alt="Kitchen Chaos">
+                        </div>
+                        <div class="icon-label">KitchenChaos.exe</div>
+                    </div>
+                    
+                    <!-- Project Sword of Pawrok -->
+                    <div class="desktop-icon-container" data-project="sword-of-pawrok">
+                        <div class="desktop-icon">
+                            <img src="img/portfolio/sop_logo_mini.png" alt="Sword of Pawrok">
+                        </div>
+                        <div class="icon-label">Sword-of-Pawrok.exe</div>
+                    </div>
+                    
+                    <!-- Project Office Fever -->
+                    <div class="desktop-icon-container" data-project="OfficeFever-Clone">
+                        <div class="desktop-icon">
+                            <img src="img/portfolio/office-fever.png" alt="OfficeFever-Clone">
+                        </div>
+                        <div class="icon-label">OfficeFever-Clone.apk</div>
+                    </div>
+                    
+                    <!-- Project MatchBlock3D -->
+                    <div class="desktop-icon-container" data-project="MatchBlock3D-Clone">
+                        <div class="desktop-icon">
+                            <img src="img/portfolio/MatchBlock3D.jpeg" alt="MatchBlock3D-Clone">
+                        </div>
+                        <div class="icon-label">MatchBlock3D-Clone.apk</div>
+                    </div>
+                    
+                    <!-- Project HyperCasual-CharacterController -->
+                    <div class="desktop-icon-container" data-project="HyperCasual-CharacterController">
+                        <div class="desktop-icon">
+                            <img src="img/portfolio/HyperCasual-CharacterController.png" alt="HyperCasual-CharacterController">
+                        </div>
+                        <div class="icon-label">HyperCasual-CharacterController.asset</div>
+                    </div>
+                    
+                    <!-- Project Stack -->
+                    <div class="desktop-icon-container" data-project="Stack-Clone">
+                        <div class="desktop-icon">
+                            <img src="img/portfolio/Stack_banner.gif" alt="Stack-Clone">
+                        </div>
+                        <div class="icon-label">Stack-Clone.apk</div>
+                    </div>
+                    
+                    <!-- Project Minigolf -->
+                    <div class="desktop-icon-container" data-project="Minigolf-Game">
+                        <div class="desktop-icon">
+                            <img src="img/portfolio/minigolf_banner.png" alt="Minigolf-Game">
+                        </div>
+                        <div class="icon-label">MiniGolf.exe</div>
+                    </div>
+                    
+                    <!-- Project SpaceShooter -->
+                    <div class="desktop-icon-container" data-project="OOP-SpaceShooter">
+                       <div class="desktop-icon">
+                            <img src="img/portfolio/spaceshooter_banner.png" alt="OOP-SpaceShooter">
+                        </div>
+                        <div class="icon-label">OOP-SpaceShooter.exe</div>
+                    </div>
+                    
+                    <!-- Project SO CardSystem -->
+                    <div class="desktop-icon-container" data-project="SO-CardSystem">
+                        <div class="desktop-icon">
+                            <img src="img/portfolio/cardsystem_banner.png" alt="SO-CardSystem">
+                        </div>
+                        <div class="icon-label">SO-CardSystem.dll</div>
+                    </div>
+                </div>
+            </div>
+        </section>
         
-        <div class="search-container">
-            <div class="search-box">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" id="portfolio-search" placeholder="Search projects...">
-                <button id="clear-search" class="clear-button">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="tags-filter-container">
-                <div class="tags-title">Filter by tags:</div>
-                <div class="tags-list" id="tags-list">
-                    <!-- Tags will be dynamically added here -->
+        <!-- Project Modal - Rewritten as a Window -->
+        <div class="modal-overlay">
+            <div class="modal window">
+                <div class="title-bar">
+                    <div class="title-bar-text modal-title">Project Title</div>
+                    <div class="title-bar-controls">
+                        <button class="modal-close" aria-label="Close"></button>
+                    </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="portfolio-grid">
-            <!-- Project Design Patterns -->
-            <div class="portfolio-item" data-project="unity-design-patterns">
-                <img src="img/portfolio/designpatterns.png" alt="Unity Design Patterns" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">Unity Design Patterns</h3>
-                        <p class="portfolio-category">A basic showcase of design patterns in Unity</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
+                <div class="window-body">
+                    <div class="modal-img-container">
+                        <img src="/placeholder.svg" alt="Project Image" class="modal-img">
+                    </div>
+                    <div class="modal-content">
+                        <fieldset class="retro-fieldset">
+                            <legend>Description</legend>
+                            <p class="modal-description">Project description will be loaded here.</p>
+                        </fieldset>
+                        
+                        <div class="modal-actions">
+                            <a href="#" class="modal-project-link github-link retro-button" aria-label="GitHub" target="_blank">
+                                <i class="fab fa-github"></i> View Source
+                            </a>
+                            <a href="#" class="modal-project-link youtube-link retro-button" aria-label="YouTube" target="_blank">
+                                <i class="fab fa-youtube"></i> Watch Demo
+                            </a>
+                        </div>
+                        <div class="modal-tags-container">
+                            <div class="status-bar-text">Tags:</div>
+                            <div class="modal-tags"></div>
                         </div>
                     </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/Design-Patterns-Unity" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
                 </div>
-            </div>
-            
-            <!-- Project SOLID -->
-            <div class="portfolio-item" data-project="solid-principles">
-                <img src="img/portfolio/solid-banner.jpeg" alt="Solid Principles" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">SOLID Principles</h3>
-                        <p class="portfolio-category">A basic showcase of S.O.L.I.D principles in Unity</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/SOLID-Principles" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.youtube.com/watch?v=gi0EkKUH2n0" class="portfolio-link-icon" target="_blank" aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project Pathfinding -->
-            <div class="portfolio-item" data-project="Astar-Pathfinding">
-                <img src="img/portfolio/enemyai.png" alt="EnemyAI-StatePattern" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">EnemyAI StatePattern</h3>
-                        <p class="portfolio-category">Basic pathfinding system using A* algorithm</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/EnemyAI-StatePattern" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project 3D Procedural Animation -->
-            <div class="portfolio-item" data-project="3d-procedural-animation">
-                <img src="img/portfolio/Procedural-Animation-Banner.jpg" alt="3D Procedural Animation" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">3D Procedural Animation</h3>
-                        <p class="portfolio-category">A basic showcase of procedural animation in Unity</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/3D-Procedural-Animation" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project CyberOps -->
-            <div class="portfolio-item" data-project="project-cyberops">
-                <img src="img/portfolio/project-cyberops_banner.jpeg" alt="Project CyberOps" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">Project CyberOps</h3>
-                        <p class="portfolio-category">A 2D CyberPunk Theme Action Game</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/Project-CyberOps" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.youtube.com/watch?v=pXhB3EYcGZA" class="portfolio-link-icon" target="_blank" aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project Kitchen Chaos -->
-            <div class="portfolio-item" data-project="kitchen-chaos">
-                <img src="img/portfolio/KitchenChaosLogo.png" alt="Kitchen Chaos" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">Kitchen Chaos</h3>
-                        <p class="portfolio-category">A cooking game tutorial made in Unity</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/KitchenChaos-Clone" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.youtube.com/watch?v=AmGSEH7QcDg" class="portfolio-link-icon" target="_blank" aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project Sword of Pawrok -->
-            <div class="portfolio-item" data-project="sword-of-pawrok">
-                <img src="img/portfolio/sop_logo_mini.png" alt="Sword of Pawrok" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">Sword of Pawrok</h3>
-                        <p class="portfolio-category">A basic RPG demo made in Unity</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/project-rpg" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.youtube.com/watch?v=zVvVfg3hedA" class="portfolio-link-icon" target="_blank" aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project Office Fever -->
-            <div class="portfolio-item" data-project="OfficeFever-Clone">
-                <img src="img/portfolio/office-fever.png" alt="OfficeFever-Clone" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">OfficeFever-Clone</h3>
-                        <p class="portfolio-category">A simple clone of "Office Fever"</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/OfficeFever-Clone" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project MatchBlock3D -->
-            <div class="portfolio-item" data-project="MatchBlock3D-Clone">
-                <img src="img/portfolio/MatchBlock3D.jpeg" alt="MatchBlock3D-Clone" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">MatchBlock3D-Clone</h3>
-                        <p class="portfolio-category">A simple clone of "Match Block 3D"</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/MatchBlock3D-Clone" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project HyperCasual-CharacterController -->
-            <div class="portfolio-item" data-project="HyperCasual-CharacterController">
-                <img src="img/portfolio/HyperCasual-CharacterController.png" alt="HyperCasual-CharacterController" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">HyperCasual-CharacterController</h3>
-                        <p class="portfolio-category">A modular Character Controller built specifically for Hyper Casual games in Unity.</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/HyperCasual-CharacterController" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project Stack -->
-            <div class="portfolio-item" data-project="Stack-Clone">
-                <img src="img/portfolio/Stack_banner.gif" alt="Stack-Clone" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">Stack-Clone</h3>
-                        <p class="portfolio-category">A simple clone of "Stack"</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/Stack-Clone" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project Minigolf -->
-            <div class="portfolio-item" data-project="Minigolf-Game">
-                <img src="img/portfolio/minigolf_banner.png" alt="Minigolf-Game" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">Mini-golf Game</h3>
-                        <p class="portfolio-category">A demo mini-golf game</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/minigolf-game" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project SpaceShooter -->
-            <div class="portfolio-item" data-project="OOP-SpaceShooter">
-                <img src="img/portfolio/spaceshooter_banner.png" alt="OOP-SpaceShooter" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">OOP SpaceShooter</h3>
-                        <p class="portfolio-category">A space shooter game using OOP</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/OOP-SpaceShooter" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project SO CardSystem -->
-            <div class="portfolio-item" data-project="SO-CardSystem">
-                <img src="img/portfolio/cardsystem_banner.png" alt="SO-CardSystem" class="portfolio-img">
-                <div class="portfolio-info">
-                    <div class="portfolio-text">
-                        <h3 class="portfolio-title">ScriptableObject CardSystem</h3>
-                        <p class="portfolio-category">Simple card system using ScriptableObjects</p>
-                        <div class="portfolio-tags">
-                            <!-- Tags will be dynamically added here -->
-                        </div>
-                    </div>
-                    <div class="portfolio-links">
-                        <a href="https://github.com/gr4ndsmurf/SO-CardSystem" class="portfolio-link-icon" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Project Modal -->
-    <div class="modal-overlay">
-        <div class="modal">
-            <div class="modal-header">
-                <h2 class="modal-title">Project Title</h2>
-                <div class="modal-divider">
-                    <i class="fas fa-briefcase star-icon"></i>
-                </div>
-                <button class="modal-close">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-img-container">
-                <img src="/placeholder.svg" alt="Project Image" class="modal-img">
-            </div>
-            <div class="modal-content">
-                <p class="modal-description">Project description will be loaded here.</p>
-                <div class="modal-project-links">
-                    <a href="#" class="modal-project-link github-link" aria-label="GitHub" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="modal-project-link youtube-link" aria-label="YouTube" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-                <div class="modal-tags-container">
-                    <div class="modal-tags"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="section-title-container">
-            <h2 class="section-title">ABOUT</h2>
-            <div class="title-divider">
-                <i class="fas fa-user star-icon"></i>
-            </div>
-        </div>
-        <div class="about-content">
-            <div class="about-column">
-                <p class="about-description">As a gamer since childhood, I have always been passionate about video games. Entering the game development industry was a natural step for me, and since then, my journey has been nothing but exciting. Self-taught through platforms such as YouTube and Udemy, I have honed my skills to a proficient level and gained a wealth of knowledge in Unity game development.</p>
-            </div>
-            <div class="about-column">
-                <p class="about-description">Although I have no formal education in computer science or software engineering, I believe that my practical experience and continuous self-improvement have equipped me with the necessary expertise. I am confident in my abilities to overcome challenges with creativity and innovation.</p>
             </div>
         </div>
 
-        <div class="email-section" id="contact">
-            <h3 class="email-title">CONTACT</h3>
-            <p class="email-address">akinhaydaroglu28@gmail.com</p>
-            <a href="mailto:akinhaydaroglu28@gmail.com" class="email-button">
-                <i class="fas fa-envelope"></i> Send Email
-            </a>
-            <div class="about-links-container">
-                <div class="social-links">
-                    <a href="https://github.com/gr4ndsmurf" class="social-link" aria-label="GitHub" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://gr4ndsmurf.itch.io" class="social-link" aria-label="ItchIO" target="_blank">
-                        <i class="fab fa-itch-io"></i>
-                    </a>
-                    <a href="https://x.com/gr4ndsmurf" class="social-link" aria-label="Twitter" target="_blank">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/akinhaydaroglu/" class="social-link" aria-label="LinkedIn" target="_blank">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
+        <!-- About Section -->
+        <section id="about" class="window" style="margin-top: 2rem;">
+            <div class="title-bar">
+                <div class="title-bar-text">C:\Users\gr4ndsmurf\AboutMe.txt</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
-        </div>
-    </section>
+            <div class="window-body">
+                <div class="about-content">
+                    <div class="about-column">
+                        <p class="about-description">As a gamer since childhood, I have always been passionate about video games. Entering the game development industry was a natural step for me, and since then, my journey has been nothing but exciting. Self-taught through platforms such as YouTube and Udemy, I have honed my skills to a proficient level and gained a wealth of knowledge in Unity game development.</p>
+                    </div>
+                    <div class="about-column">
+                        <p class="about-description">Although I have no formal education in computer science or software engineering, I believe that my practical experience and continuous self-improvement have equipped me with the necessary expertise. I am confident in my abilities to overcome challenges with creativity and innovation.</p>
+                    </div>
+                </div>
+
+                <div class="email-section" id="contact">
+                    <fieldset class="retro-fieldset">
+                        <legend>E-Mail</legend>
+                        <div class="contact-row">
+                            <p class="email-address">To: akinhaydaroglu28@gmail.com</p>
+                            <a href="mailto:akinhaydaroglu28@gmail.com" class="retro-button">
+                                <i class="fas fa-envelope"></i> Send Email
+                            </a>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="status-bar">
+                <p class="status-bar-field">Ready</p>
+                <p class="status-bar-field">Ln 1, Col 1</p>
+                <p class="status-bar-field">OVR</p>
+            </div>
+        </section>
+    </main>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
